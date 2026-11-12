@@ -80,7 +80,9 @@ nav a:hover::after{width:100%}
 .marquee{border-block:1px solid var(--line);padding:22px 0;overflow:hidden;white-space:nowrap;background:var(--purple)}
 .marquee div{display:inline-block;animation:mq 25s linear infinite;font-size:clamp(28px,4vw,56px);font-weight:900}
 .marquee span{margin:0 28px}
-.marquee em{font-style:normal;font-family:Silkscreen;color:var(--bg)}
+.marquee em{display:inline-block;width:.32em;height:.32em;background:var(--bg);vertical-align:middle}
+.ico{width:.8em;height:.8em;display:inline-block;vertical-align:middle;margin-inline-start:.25em;transform:scaleX(-1)}
+footer .big{white-space:nowrap}
 @keyframes mq{to{transform:translateX(50%)}}
 
 /* apps */
@@ -101,7 +103,7 @@ section{padding:140px 4vw}
 .chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:end}
 .chips span{font-size:11px;border:1px solid currentColor;padding:6px 12px;border-radius:99px;opacity:.7}
 .arrow{font-size:36px;transition:transform .4s}
-.app:hover .arrow{transform:rotate(-45deg)}
+.app:hover .arrow{transform:translate(-4px,-4px)}
 .preview{position:fixed;top:0;left:0;pointer-events:none;z-index:40;opacity:0;
   transform:translate(-50%,-50%) scale(.6) rotate(-8deg);transition:opacity .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
 .preview.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4deg)}
@@ -221,7 +223,7 @@ footer .row a:hover{color:var(--ink)}
   </div>
   <div class="avatar-wrap" data-hover>
     <svg class="badge" viewBox="0 0 100 100"><defs><path id="c" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
-      <text><textPath href="#c">• SCROLL DOWN • SEE MY APPS </textPath></text></svg>
+      <text><textPath href="#c">SCROLL DOWN / SEE MY APPS / </textPath></text></svg>
     <img src="avatar.jpg" alt="متعب" class="avatar">
   </div>
   <div class="scroll pixel">SCROLL</div>
@@ -248,7 +250,7 @@ footer .row a:hover{color:var(--ink)}
 
 <footer id="contact">
   <p class="pixel" style="color:var(--muted);margin-bottom:20px">GOT AN IDEA?</p>
-  <a class="big" href="https://x.com/notmut3b" target="_blank" rel="noopener" data-hover>خلنا نسولف ↗</a>
+  <a class="big" href="https://x.com/notmut3b" target="_blank" rel="noopener" data-hover>خلنا نسولف<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></svg></a>
   <div class="row">
     <span class="en">© 2026 Muteb</span>
     <div class="en"><a href="https://x.com/notmut3b" target="_blank" rel="noopener">X @notmut3b</a></div>
@@ -256,7 +258,7 @@ footer .row a:hover{color:var(--ink)}
 </footer>
 
 <script>
-// ✏️ عدّل تطبيقاتك هنا
+// عدّل تطبيقاتك هنا
 const APPS = [
   {name:"وريق", desc:"حرّر ملفات PDF ووقّعها على iPhone — بدون اشتراك وبدون رفع ملفاتك لأي خادم.", tags:["iOS","Productivity","PDF"], icon:"wareeq.jpg", shots:["shots/wareeq-1.jpg","shots/wareeq-2.jpg","shots/wareeq-3.jpg"], color:"#e9e2d4", url:"https://apps.apple.com/sa/app/id6828390386"},
   {name:"مِراس", desc:"سجّل تمارين المقاومة وتابع تقدمك بواجهة عربية واضحة.", tags:["iOS","Fitness"], icon:"miras.jpg", shots:["shots/miras-1.jpg","shots/miras-2.jpg","shots/miras-3.jpg"], color:"#b48ce0", url:"https://apps.apple.com/sa/app/id6820522323"},
@@ -269,7 +271,7 @@ APPS.forEach((a,i)=>{
     <span class="num pixel">0${i+1}</span>
     <div><h3><img class="app-icon" src="${a.icon}" alt="">${a.name}</h3><p>${a.desc}</p></div>
     <div class="chips en">${a.tags.map(t=>`<span>${t}</span>`).join('')}</div>
-    <span class="arrow">↙</span></a>`;
+    <span class="arrow"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></svg></span></a>`;
   const el=li.firstElementChild;
   el.addEventListener('mouseenter',()=>{
     prev.innerHTML=`<div class="phone">${a.shots.map((s,k)=>`<img src="${s}" alt="" class="${k?'':'show'}">`).join('')}</div>`;
@@ -282,12 +284,12 @@ APPS.forEach((a,i)=>{
 
 const gal=document.getElementById('gallery');
 gal.innerHTML=APPS.map(a=>`<div class="gal-row reveal">
-  <h4><img src="${a.icon}" alt="">${a.name}<a href="${a.url}" target="_blank" rel="noopener">حمّل من App Store ↗</a></h4>
+  <h4><img src="${a.icon}" alt="">${a.name}<a href="${a.url}" target="_blank" rel="noopener">حمّل من App Store<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></svg></a></h4>
   <div class="strip">${a.shots.map(s=>`<div class="phone"><img src="${s}" alt="لقطة من ${a.name}" loading="lazy"></div>`).join('')}</div></div>`).join('');
 document.getElementById('count').textContent=`(${String(APPS.length).padStart(2,'0')}) PROJECTS`;
 
-const words=APPS.map(a=>`<span>${a.name}</span><em>✦</em>`).join('');
-document.getElementById('mq').innerHTML=(words+`<span>تصميم</span><em>✦</em><span>تطوير</span><em>✦</em>`).repeat(4);
+const words=APPS.map(a=>`<span>${a.name}</span><em></em>`).join('');
+document.getElementById('mq').innerHTML=(words+`<span>تصميم</span><em></em><span>تطوير</span><em></em>`).repeat(4);
 
 // cursor + preview follow
 const cur=document.getElementById('cursor');let mx=0,my=0,px=0,py=0;
